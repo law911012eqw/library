@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Integrating Google sign-in-->
+    <meta name="google-signin-client_id"
+        content="946954180505-ua4v6h552ptv8jgmffgsiu8hsdann79n.apps.googleusercontent.com">
+    <meta name="google-signin-cookiepolicy" content="single_host_origin">
+    <meta name="google-signin-scope" content="profile email">
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="https://kit.fontawesome.com/ed247afa0e.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" media="all" />
+    <title>Library</title>
+</head>
+
+<body>
+    <a class="sign-out" href="#" onclick="signOut();">Sign out</a>
+    <div id="profileContainer"></div>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div id="main-header">
+        <header id="header-text">Library</header>
+        <p>Select a library format:</p>
+
+        <div id="pref-container">
+            <div id="table-button" onclick=activeDiv(this.id) class="lib-btn-format">Table</div>
+            <div id="grid-button" onclick=activeDiv(this.id) class="lib-btn-format" class="active-format">Grid</div>
+            <!-- <div id="bookshelf-button" onclick=activeDiv(this.id) class="lib-btn-format">Shelf</div> -->
+        </div>
+        <div id="full-width-visual"></div>
+    </div>
+    <div class="form-container">
+        <form id="myForm" action="" class="form-popup">
+            <div class="form-input">
+                <label for="title">Title: ** </label>
+                <input class="input-field" type="text" maxlength="100" placeholder="required" id="bookTitle" required>
+            </div>
+            <div class="form-input">
+                <label for="author">Author: </label>
+                <input class="input-field" type="text" maxlength="200" placeholder="Author" id="bookAuthor">
+            </div>
+            <div class="form-input">
+                <label for="pages"># of pages: **</label>
+                <input class="input-field" type="number" placeholder="It's not a book without pages.."
+                    id="bookPageNumber" required min="1" max="8769">
+            </div>
+            <div class="form-input">
+                <label for="read">Have you read it?</label>
+                <input type="checkbox" checked="checked" id="bookReadStatus">
+            </div>
+            <button id="addBook" class="form-button" type="submit" form="myForm">Add Book</button>
+            <button class="form-button" type="reset" form="myForm" value="Reset">Reset</button>
+            <button id="closeForm" class="form-button" type="button" form="myForm" value="Close">Close</button>
+        </form>
+    </div>
+    <div id="button-parent-container">
+        <div id="button-container">
+            <button id="showForm" class="btn-book-related"><i class="fas fa-plus-circle"></i> New book</button>
+            <button id="removeDuplicates" class="btn-book-related"><i class="fas fa-copy"></i> Remove
+                duplicates</button>
+            <button id="removeAll" class="btn-book-related"><i class="fas fa-trash-alt"></i> Clear all</button>
+        </div>
+        <div id="sort-dropdown">
+            <button class="dropdown-btn">Sort by <i class="fas fa-chevron-down"></i></button>
+            <div id="myDropdown" class="dropdown-content">
+                <div id="sort-title" class="sort-items">Title</div>
+                <div id="sort-author" class="sort-items">Author</div>
+                <div id="sort-pages" class="sort-items">Pages Number</div>
+                <div id="sort-completion" class="sort-items">Completion</div>
+            </div>
+        </div>
+    </div>
+    <div id="library-grid" class="library-format"></div>
+    <div id="library-table-container" class="library-format">
+    </div>
+    <footer>
+        <a id="odin" href="https://www.theodinproject.com" target="_blank">The Odin Project</a>
+        <span id="footer-main-content">Maintained by <a id="profile-link" href="https://github.com/law911012eqw"
+                target="_blank" class="btn contact-details"><i class="fab fa-github"></i></i> law911012eqw</a></span>
+    </footer>
+
+
+    <!-- Initialize Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="firebase/init.js"></script>
+    <script src="library.js"></script>
+</body>
+
+</html>
