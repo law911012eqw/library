@@ -59,7 +59,7 @@ function retrieveDataFromCloud() {
     displayBooks();
 }
 function storeDataToCloud() {
-    firebase.database().ref(`library/${userId}`).set({
+    firebase.database().ref(`library/${userId}`).update({
         books: myLibrary
     });
 }
@@ -222,12 +222,10 @@ function recreateBooksInTableFormat() {
 //display books including the intended DOM elements with style manipulation involved
 function displayBooks() {
     if (document.getElementById('grid-button').classList.contains('active-format')) {
-        storeDataToCloud();
         recreateBooksInGridFormat();
 
     }
     else if (document.getElementById('table-button').classList.contains('active-format')) {
-        storeDataToCloud();
         recreateBooksInTableFormat();
     }
 }
