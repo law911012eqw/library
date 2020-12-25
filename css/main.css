@@ -453,6 +453,9 @@ tr:last-child{
             flex-wrap: wrap;
         padding: 15px;
     }
+    #button-parent-container{
+        margin: 37px 0 0 0;
+    }
     .book-grid{
         width: 180px;
         height: 165px;
@@ -463,6 +466,10 @@ tr:last-child{
         word-wrap: break-word;
         color: white;
         text-align: center;
+    }
+    .form-popup{
+        -webkit-transform: translate(-35%, 0%);
+        transform: translate(-35%, 0%);
     }
     .remove-book{
         width: 20px;
