@@ -21,20 +21,48 @@
 </head>
 
 <body>
-    <a class="sign-out" href="#" onclick="signOut();">Sign out</a>
-    <div id="profileContainer"></div>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <div id="main-header">
-        <header id="header-text">Library</header>
-        <p>Select a library format:</p>
+    <div id="entire-page">
+        <div id="header-section">
+            <a class="sign-out" href="#" onclick="signOut();">Sign out</a>
+            <div id="profileContainer"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <div id="main-header">
+                <header id="header-text">Library</header>
+                <p>Select a library format:</p>
 
-        <div id="pref-container">
-            <div id="table-button" onclick=activeDiv(this.id) class="lib-btn-format">Table</div>
-            <div id="grid-button" onclick=activeDiv(this.id) class="lib-btn-format" class="active-format">Grid</div>
-            <!-- <div id="bookshelf-button" onclick=activeDiv(this.id) class="lib-btn-format">Shelf</div> -->
+                <div id="pref-container">
+                    <div id="table-button" onclick=activeDiv(this.id) class="lib-btn-format">Table</div>
+                    <div id="grid-button" onclick=activeDiv(this.id) class="lib-btn-format" class="active-format">Grid
+                    </div>
+                    <!-- <div id="bookshelf-button" onclick=activeDiv(this.id) class="lib-btn-format">Shelf</div> -->
+                </div>
+                <div id="full-width-visual"></div>
+            </div>
         </div>
-        <div id="full-width-visual"></div>
+        <div id="main-section">
+            <div id="button-parent-container">
+                <div id="button-container">
+                    <button id="showForm" class="btn-book-related"><i class="fas fa-plus-circle"></i> New book</button>
+                    <button id="removeDuplicates" class="btn-book-related"><i class="fas fa-copy"></i> Remove
+                        duplicates</button>
+                    <button id="removeAll" class="btn-book-related"><i class="fas fa-trash-alt"></i> Clear all</button>
+                </div>
+                <div id="sort-dropdown">
+                    <button class="dropdown-btn">Sort by <i class="fas fa-chevron-down"></i></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div id="sort-title" class="sort-items">Title</div>
+                        <div id="sort-author" class="sort-items">Author</div>
+                        <div id="sort-pages" class="sort-items">Pages Number</div>
+                        <div id="sort-completion" class="sort-items">Completion</div>
+                    </div>
+                </div>
+            </div>
+            <div id="library-grid" class="library-format"></div>
+            <div id="library-table-container" class="library-format">
+            </div>
+        </div>
     </div>
+
     <div class="form-container">
         <form id="myForm" action="" class="form-popup">
             <div class="form-input">
@@ -59,26 +87,7 @@
             <button id="closeForm" class="form-button" type="button" form="myForm" value="Close">Close</button>
         </form>
     </div>
-    <div id="button-parent-container">
-        <div id="button-container">
-            <button id="showForm" class="btn-book-related"><i class="fas fa-plus-circle"></i> New book</button>
-            <button id="removeDuplicates" class="btn-book-related"><i class="fas fa-copy"></i> Remove
-                duplicates</button>
-            <button id="removeAll" class="btn-book-related"><i class="fas fa-trash-alt"></i> Clear all</button>
-        </div>
-        <div id="sort-dropdown">
-            <button class="dropdown-btn">Sort by <i class="fas fa-chevron-down"></i></button>
-            <div id="myDropdown" class="dropdown-content">
-                <div id="sort-title" class="sort-items">Title</div>
-                <div id="sort-author" class="sort-items">Author</div>
-                <div id="sort-pages" class="sort-items">Pages Number</div>
-                <div id="sort-completion" class="sort-items">Completion</div>
-            </div>
-        </div>
-    </div>
-    <div id="library-grid" class="library-format"></div>
-    <div id="library-table-container" class="library-format">
-    </div>
+
     <footer>
         <a id="odin" href="https://www.theodinproject.com" target="_blank">The Odin Project</a>
         <span id="footer-main-content">Maintained by <a id="profile-link" href="https://github.com/law911012eqw"
