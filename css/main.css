@@ -409,3 +409,16 @@ tr:last-child{
         opacity: 0.6;
     }
 }
+
+@media screen and (max-width:452px){
+    header{
+        font-size: 2.2em;
+        margin:65px 115px 25px 0;
+    }
+    #odin{
+        visibility: hidden;
+    }
+    #footer-main-content{
+        left: 15%;
+    }
+}
