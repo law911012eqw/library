@@ -47,7 +47,7 @@ function retrieveDataFromCloud() {
     let remoteLibraryRef = firebase.database().ref(`library/${userId}/books`);
     remoteLibraryRef.on('value', (snap) => {
         console.log(snap.val());
-        snap.forEach((k,i) =>{
+        snap.forEach(k => {
             let book = new Books;
             book.title = k.val().title;
             book.author = k.val().author;
@@ -82,17 +82,16 @@ function userProfile(givenName, fullName, userImage) {
 }
 //Firebase authentication
 function onSignIn(googleUser) {
-    let profile = googleUser.getBasicProfile();
-    let givenName = profile.getGivenName();
-    let userName = profile.getName();
-    let userImage = profile.getImageUrl();
+    const profile = googleUser.getBasicProfile();
+    const givenName = profile.getGivenName();
+    const userName = profile.getName();
+    const userImage = profile.getImageUrl();
    
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
-    let unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
+    let unsubscribe = firebase.auth().onAuthStateChanged((user) => {
         unsubscribe();
-        userId = firebaseUser.uid;
         // Check if we are already signed-in Firebase with the correct user.
-        if (!isUserEqual(googleUser, firebaseUser)) {
+        if (!isUserEqual(googleUser, user)) {
             // Build Firebase credential with the Google ID token.
             let credential = firebase.auth.GoogleAuthProvider.credential(
                 googleUser.getAuthResponse().id_token);
@@ -110,17 +109,21 @@ function onSignIn(googleUser) {
                 // ...
                 console.log(errorCode, errorMessage, email, credential);
             });
-        } else {
+        } else if (user === null) {
+            console.log('User is null');
+        }
+        else {
             userProfile(givenName, userName, userImage);
             retrieveDataFromCloud();
             console.log('User already signed-in Firebase.');
         }
+        userId = user.uid;
     });
 }
 //checks if the googleuser and firebaseuser is equal
-function isUserEqual(googleUser, firebaseUser) {
-    if (firebaseUser) {
-        let providerData = firebaseUser.providerData;
+function isUserEqual(googleUser, user) {
+    if (user) {
+        let providerData = user.providerData;
         for (let i = 0; i < providerData.length; i++) {
             if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
                 providerData[i].uid === googleUser.getBasicProfile().getId()) {
